@@ -38,32 +38,30 @@ public class Main {
     }
 
     public static boolean addNew(int col, int row) {
-
-        int[][] coor = changeCoor(col, row);
-        int newCol = coor[0][0];
-        int newRow = coor[0][1];
+        int[] coor = changeCoor(col, row);
+        int newRow = coor[0];
+        int newCol = coor[1];
 
         if (col < 1 || col > 3 || row < 1 || row > 3) {
             System.out.println("Coordinates should be from 1 to 3!");
             return false;
         }
 
-        if (grid[newCol][newRow] != ' ') {
+        if (grid[newRow][newCol] != ' ') {
             System.out.println("This cell is occupied! Choose another one!");
             return false;
         }
 
-        grid[newCol][newRow] = isX ? 'X' : 'O';
+        grid[newRow][newCol] = isX ? 'X' : 'O';
         isX = !isX;
         filledCount++;
         return true;
     }
 
-    public static int[][] changeCoor(int col, int row) {
-        int[][] coor = new int[1][2];
-
-        coor[0][0] = 3 - row;
-        coor[0][1] = col - 1;
+    public static int[] changeCoor(int col, int row) {
+        int[] coor = new int[2];
+        coor[0] = 3 - row;
+        coor[1] = col - 1;
 
         return coor;
     }
